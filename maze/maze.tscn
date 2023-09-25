@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://difm507ixbdvv"]
+
+[ext_resource type="Script" path="res://maze/maze.gd" id="1_j5nff"]
+
+[node name="Maze" type="Node2D"]
+script = ExtResource("1_j5nff")
+level = "res://levels/level1.txt"

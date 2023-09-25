@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://nj7uu5ldrn6r"]
+
+[ext_resource type="Texture2D" uid="uid://blssiw7k51ttb" path="res://assets/levels/example/background.png" id="1_k3k8m"]
+[ext_resource type="Script" path="res://maze/room/room.gd" id="1_nnnry"]
+[ext_resource type="Script" path="res://maze/room/wall.gd" id="2_rdcog"]
+[ext_resource type="Texture2D" uid="uid://kfbd65nerh4p" path="res://assets/levels/example/h_wall.png" id="3_wjvpv"]
+[ext_resource type="Texture2D" uid="uid://bw8urk6r1kipn" path="res://assets/levels/example/h_bottom.png" id="4_neyfo"]
+[ext_resource type="Texture2D" uid="uid://drntjtyhwa1p2" path="res://assets/levels/example/h_door.png" id="5_f348o"]
+[ext_resource type="Texture2D" uid="uid://bnst0b2n3qqhb" path="res://assets/levels/example/h_top.png" id="6_ajvwa"]
+
+[node name="Room" type="Node2D"]
+position = Vector2(540, 960)
+script = ExtResource("1_nnnry")
+
+[node name="Content" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_k3k8m")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="WallTop" type="Node2D" parent="Walls"]
+position = Vector2(0, -810)
+script = ExtResource("2_rdcog")
+
+[node name="Wall" type="Sprite2D" parent="Walls/WallTop"]
+texture = ExtResource("3_wjvpv")
+
+[node name="DoorBotom" type="Sprite2D" parent="Walls/WallTop"]
+texture = ExtResource("4_neyfo")
+offset = Vector2(0, 54)
+
+[node name="DoorDoor" type="Sprite2D" parent="Walls/WallTop"]
+texture = ExtResource("5_f348o")
+
+[node name="DoorTop" type="Sprite2D" parent="Walls/WallTop"]
+texture = ExtResource("6_ajvwa")

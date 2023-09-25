@@ -1,0 +1,64 @@
+{
+	"rooms": {
+		"Example": {
+			"content": [
+			],
+			"theme": "Example",
+		}
+	},
+	"maze_generating_rules": [
+		{
+			"global_theme": "Example",
+			"avarage_rooms_count": 10,
+			"max_delta": 3,
+			"rooms_set":[
+				{
+					"room_name": "Example",
+					"random_spawn_weight": 1
+				},
+			]
+		}
+	],
+	"sprites": {
+		"backgrounds": {
+			"Example": "res://assets/levels/example/background.png",
+		},
+		"vertical_sprites":{
+			"walls":{
+				"Example": "res://assets/levels/example/h_wall.png",
+			},
+			"doors":{
+				"Example":{
+					"top": "res://assets/levels/example/h_top.png",
+					"door": "res://assets/levels/example/h_door.png",
+					"bottom": "res://assets/levels/example/h_bottom.png",
+				},
+			},
+		},
+		"horizontal_sprites":{
+			"walls":{
+				"Example": "res://assets/levels/example/v_wall.png",
+			},
+			"doors":{
+				"Example":{
+					"top": "res://assets/levels/example/v_top.png",
+					"door": "res://assets/levels/example/v_door.png",
+					"bottom": "res://assets/levels/example/v_bottom.png",
+				}
+			},
+		},
+	},
+	"themes":{
+		"Example":{
+			"background":[
+				"Example"
+			],
+			"walls":[
+				"Example"
+			],
+			"doors":[
+				"Example"
+			],
+		}
+	}
+}
