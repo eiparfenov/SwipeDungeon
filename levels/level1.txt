@@ -8,13 +8,14 @@
 	},
 	"maze_generating_rules": [
 		{
+			"distance": 0,
 			"global_theme": "Example",
 			"avarage_rooms_count": 10,
 			"max_delta": 3,
 			"rooms_set":[
 				{
 					"room_name": "Example",
-					"random_spawn_weight": 1
+					"random_spawn_weight": 4
 				},
 			]
 		}
@@ -60,5 +61,6 @@
 				"Example"
 			],
 		}
-	}
+	},
+	"default_theme": "Example"
 }

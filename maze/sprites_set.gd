@@ -45,7 +45,7 @@ func _init(init_data: Dictionary):
 
 func get_wall(name: String, direction: Utils.Direction) -> Texture2D:
 	var source: Dictionary
-	if Utils.Direction.Horizontal & direction:
+	if Utils.Direction.Vectrical & direction:
 		source = h_walls
 	else:
 		source = v_walls
@@ -57,18 +57,18 @@ func get_wall(name: String, direction: Utils.Direction) -> Texture2D:
 	return source[name]
 
 
-func get_door(name: String, direction: Utils.Direction) -> Array[Texture2D]:
+func get_door(name: String, direction: Utils.Direction) -> Array:
 	var sources: Array[Dictionary]
 	if Utils.Direction.Horizontal & direction:
 		sources = [h_door_tops, h_door_doors, h_door_bottoms]
 	else:
 		sources = [v_door_tops, v_door_doors, v_door_bottoms]
 	
-	if not sources.all(func (x): x.has(name)):
+	if not sources.all(func (x): return x.has(name)):
 		assert(false, "Can't find %s door with name %s!" % [direction, name])
 		return [null, null, null]
 	
-	return sources.map(func (x): x[name])
+	return sources.map(func (x): return x[name])
 
 
 func get_background(name: String) -> Texture2D:
@@ -77,3 +77,15 @@ func get_background(name: String) -> Texture2D:
 		return null
 	
 	return backgrounds[name]
+
+
+func color_room(room: Room, room_data: Dictionary):
+	room.get_node("Background").texture = backgrounds[room_data["background"]]
+	for wall in room.get_node("Walls").get_children():
+		print(wall.name, " ", wall.direction)
+		wall.get_node("Wall").texture = get_wall(room_data["walls"][wall.direction], wall.direction)
+		var door = get_door(room_data["doors"][wall.direction], wall.direction)
+		wall.get_node("DoorTop").texture = door[0]
+		wall.get_node("DoorDoor").texture = door[1]
+		wall.get_node("DoorBottom").texture = door[2]
+		wall.is_door = wall.direction & room_data["gates"]

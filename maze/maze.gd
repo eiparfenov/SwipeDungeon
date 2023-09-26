@@ -1,11 +1,10 @@
-@tool
-
 extends Node2D
 class_name Maze
 
 
 @export_file("*.txt") var level: String
-
+var room_scene = preload("res://maze/room/room.tscn")
+var room_offset = Vector2(1080, 1728)
 
 func _ready():
 	_create_maze()
@@ -14,5 +13,14 @@ func _ready():
 func _create_maze():
 	var file = FileAccess.open(level, FileAccess.READ)
 	var data = str_to_var(file.get_as_text())
+	var generated_maze = MazeGenerator.generate_maze(data)
+	var sprites_set = SpritesSet.new(data["sprites"])
 	
-	print(data) 
+	for room_data in generated_maze:
+		var room: Room = room_scene.instantiate()
+		add_child(room)
+		
+		sprites_set.color_room(room, generated_maze[room_data])
+		room.global_position = Vector2(room_offset.x * room_data.x, room_offset.y * room_data.y)
+	
+
