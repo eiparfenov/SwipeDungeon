@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://nj7uu5ldrn6r"]
+[gd_scene load_steps=14 format=3 uid="uid://nj7uu5ldrn6r"]
 
 [ext_resource type="Texture2D" uid="uid://blssiw7k51ttb" path="res://assets/levels/example/background.png" id="1_k3k8m"]
 [ext_resource type="Script" path="res://maze/room/room.gd" id="1_nnnry"]
@@ -12,6 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://du65m44q4i8ty" path="res://assets/levels/example/v_door.png" id="10_flv7i"]
 [ext_resource type="Texture2D" uid="uid://bekowvbcq0qgh" path="res://assets/levels/example/v_top.png" id="11_v76sf"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0neox"]
+resource_local_to_scene = true
+size = Vector2(216, 108)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_deg1e"]
+size = Vector2(108, 216)
+
 [node name="Room" type="Node2D"]
 position = Vector2(540, 960)
 script = ExtResource("1_nnnry")
@@ -24,8 +31,10 @@ texture = ExtResource("1_k3k8m")
 
 [node name="Walls" type="Node2D" parent="."]
 
-[node name="WallTop" type="Node2D" parent="Walls"]
+[node name="WallTop" type="StaticBody2D" parent="Walls"]
 position = Vector2(0, -810)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("2_rdcog")
 direction = 1
 
@@ -42,9 +51,14 @@ texture = ExtResource("5_f348o")
 [node name="DoorTop" type="Sprite2D" parent="Walls/WallTop"]
 texture = ExtResource("6_ajvwa")
 
-[node name="WallBottom" type="Node2D" parent="Walls"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallTop"]
+shape = SubResource("RectangleShape2D_0neox")
+
+[node name="WallBottom" type="StaticBody2D" parent="Walls"]
 position = Vector2(0, 810)
 rotation = 3.14159
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("2_rdcog")
 direction = 4
 
@@ -61,8 +75,13 @@ texture = ExtResource("5_f348o")
 [node name="DoorTop" type="Sprite2D" parent="Walls/WallBottom"]
 texture = ExtResource("6_ajvwa")
 
-[node name="WallRight" type="Node2D" parent="Walls"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBottom"]
+shape = SubResource("RectangleShape2D_0neox")
+
+[node name="WallRight" type="StaticBody2D" parent="Walls"]
 position = Vector2(486, 0)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("2_rdcog")
 direction = 8
 
@@ -79,9 +98,14 @@ texture = ExtResource("10_flv7i")
 [node name="DoorTop" type="Sprite2D" parent="Walls/WallRight"]
 texture = ExtResource("11_v76sf")
 
-[node name="WallLeft" type="Node2D" parent="Walls"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallRight"]
+shape = SubResource("RectangleShape2D_deg1e")
+
+[node name="WallLeft" type="StaticBody2D" parent="Walls"]
 position = Vector2(-486, 0)
 rotation = 3.14159
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("2_rdcog")
 direction = 2
 
@@ -97,3 +121,23 @@ texture = ExtResource("10_flv7i")
 
 [node name="DoorTop" type="Sprite2D" parent="Walls/WallLeft"]
 texture = ExtResource("11_v76sf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallLeft"]
+shape = SubResource("RectangleShape2D_deg1e")
+
+[node name="RoomWall" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RoomWall"]
+polygon = PackedVector2Array(432, -108, 540, -108, 540, -864, 108, -864, 108, -756, 432, -756)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="RoomWall"]
+build_mode = 1
+polygon = PackedVector2Array(-432, -108, -540, -108, -540, -864, -108, -864, -108, -756, -432, -756)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="RoomWall"]
+polygon = PackedVector2Array(-432, 108, -540, 108, -540, 864, -108, 864, -108, 756, -432, 756)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="RoomWall"]
+polygon = PackedVector2Array(432, 108, 540, 108, 540, 864, 108, 864, 108, 756, 432, 756)

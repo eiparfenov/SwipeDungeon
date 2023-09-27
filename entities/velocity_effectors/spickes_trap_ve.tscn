@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5u87v52gdb3h"]
+
+[ext_resource type="Script" path="res://entities/velocity_effectors/spickes_trap_ve.gd" id="1_ghb1q"]
+
+[node name="SpickesTrapVe" type="Node2D"]
+script = ExtResource("1_ghb1q")

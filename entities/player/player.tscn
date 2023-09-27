@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo25ho7c4320c"]
+
+[ext_resource type="PackedScene" uid="uid://0oe3rsmd5net" path="res://entities/base_entity.tscn" id="1_obgi1"]
+[ext_resource type="PackedScene" uid="uid://bw5ie4mnr3yti" path="res://entities/velocity_effectors/player_control_ve.tscn" id="2_3ud8a"]
+[ext_resource type="PackedScene" uid="uid://b5u87v52gdb3h" path="res://entities/velocity_effectors/spickes_trap_ve.tscn" id="3_mkisa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pd0vy"]
+resource_local_to_scene = true
+radius = 30.0
+
+[node name="Player" instance=ExtResource("1_obgi1")]
+collision_layer = 1
+collision_mask = 124
+metadata/_edit_horizontal_guides_ = [50.0]
+
+[node name="Sprite2D" parent="." index="0"]
+z_index = 10
+scale = Vector2(0.765411, 0.765411)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_pd0vy")
+
+[node name="EntityStats" parent="." index="2"]
+_speed = 2.0
+
+[node name="PlayerControlVe" parent="VelocityEffectors" index="0" instance=ExtResource("2_3ud8a")]
+
+[node name="SpickesTrapVe" parent="VelocityEffectors" index="2" instance=ExtResource("3_mkisa")]

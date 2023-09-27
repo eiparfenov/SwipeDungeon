@@ -82,7 +82,6 @@ func get_background(name: String) -> Texture2D:
 func color_room(room: Room, room_data: Dictionary):
 	room.get_node("Background").texture = backgrounds[room_data["background"]]
 	for wall in room.get_node("Walls").get_children():
-		print(wall.name, " ", wall.direction)
 		wall.get_node("Wall").texture = get_wall(room_data["walls"][wall.direction], wall.direction)
 		var door = get_door(room_data["doors"][wall.direction], wall.direction)
 		wall.get_node("DoorTop").texture = door[0]

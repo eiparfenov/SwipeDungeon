@@ -30,3 +30,6 @@ static func oposite_direction(dir: Direction) -> Direction:
 	dir = dir << 2 | dir >> 2
 	dir = dir % 16
 	return dir
+
+
+const UNIT = 108.0

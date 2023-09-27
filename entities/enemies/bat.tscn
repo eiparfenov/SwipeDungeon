@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cumoocou81n05"]
+
+[ext_resource type="PackedScene" uid="uid://0oe3rsmd5net" path="res://entities/base_entity.tscn" id="1_yyk0m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7iqgq"]
+resource_local_to_scene = true
+radius = 30.0
+
+[node name="BaseEntity" instance=ExtResource("1_yyk0m")]
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_7iqgq")

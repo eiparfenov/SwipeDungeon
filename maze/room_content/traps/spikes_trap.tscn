@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg78yaa0chnu"]
+
+[ext_resource type="Script" path="res://maze/room_content/traps/spikes_trap.gd" id="1_maw2j"]
+[ext_resource type="Texture2D" uid="uid://babp5l32q5xf5" path="res://assets/traps/spickes_trap.bmp" id="2_xftxg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bb1ae"]
+resource_local_to_scene = true
+size = Vector2(200, 200)
+
+[node name="SpikesTrap" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_maw2j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 5
+texture = ExtResource("2_xftxg")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bb1ae")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

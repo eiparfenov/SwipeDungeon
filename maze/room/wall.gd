@@ -1,4 +1,4 @@
-extends Node2D
+extends StaticBody2D
 class_name Wall
 
 @export var direction: Utils.Direction

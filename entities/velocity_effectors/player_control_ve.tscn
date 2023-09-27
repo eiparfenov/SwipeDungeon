@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw5ie4mnr3yti"]
+
+[ext_resource type="Script" path="res://entities/velocity_effectors/player_control_ve.gd" id="1_qf2ot"]
+
+[node name="PlayerControlVe" type="Node2D"]
+script = ExtResource("1_qf2ot")
+order = -1

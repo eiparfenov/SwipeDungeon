@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://0vgttag0rge2"]
+
+[ext_resource type="Script" path="res://maze/room_content/traps/dirt_trap.gd" id="1_1fb8l"]
+[ext_resource type="Texture2D" uid="uid://bbcmbvtqoh74k" path="res://assets/traps/dirt_trap.bmp" id="2_ptess"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksoxu"]
+size = Vector2(200, 200)
+
+[node name="DirtTrap" type="Area2D"]
+z_index = 5
+collision_layer = 0
+collision_mask = 5
+priority = 2
+script = ExtResource("1_1fb8l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ksoxu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ptess")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
